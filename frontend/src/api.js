@@ -1,5 +1,6 @@
 // One small helper that talks to the Express API. Every page uses api.get / api.post ...
-const BASE = '/api';
+const envUrl = (import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || '/api').trim().replace(/\/$/, '');
+const BASE = envUrl.startsWith('http') && !envUrl.endsWith('/api') ? `${envUrl}/api` : envUrl;
 
 async function request(path, { method = 'GET', body } = {}) {
   const token = localStorage.getItem('token');

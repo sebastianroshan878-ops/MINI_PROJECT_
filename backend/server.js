@@ -4,7 +4,6 @@ process.env.JWT_SECRET = process.env.JWT_SECRET || 'restaurantpro_dev_secret';
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-mongoose.set('bufferCommands', false);
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
 const User = require('./models/User');
@@ -18,6 +17,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/api', (req, res) => res.json({ status: 'ok', message: 'RestaurantPro API is running', app: 'LUMORA' }));
 app.get('/api/health', (req, res) => res.json({ status: 'ok', app: 'LUMORA' }));
 
 // Business settings the React app needs (GST rate, opening hours, delivery charge ...)
@@ -68,6 +68,8 @@ async function ensureAdmin() {
     console.log('Created default admin: admin@restaurantpro.com / admin123');
   }
 }
+
+app.ensureAdmin = ensureAdmin;
 
 const PORT = process.env.PORT || 5000;
 
