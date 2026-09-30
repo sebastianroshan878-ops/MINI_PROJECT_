@@ -1,0 +1,18 @@
+{
+  "name": "restaurantpro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RestaurantPro - Restaurant Management System",
+  "scripts": {
+    "all": "node run-all.js",
+    "dev": "node run-all.js",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "start": "node run-all.js",
+    "seed": "npm run seed --prefix backend",
+    "build": "npm run build --prefix frontend",
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "postinstall": "npm run install:all",
+    "test": "npm run test:api --prefix backend"
+  }
+}
